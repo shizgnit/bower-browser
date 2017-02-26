@@ -51,10 +51,16 @@ module.exports = [
         var opts = options || {};
         ProcessService.execute(['bower uninstall', name, opts.options].join(' '), 'uninstall-' + name);
       },
-
+      
       // Update package
-      update: function () {
-        ProcessService.execute('bower update', 'update');
+      update: function (name, options) {
+        var opts = options || {};
+        if(name == 'all') {
+          ProcessService.execute('bower update', 'update');
+        }
+        else {
+          ProcessService.execute(['bower update', name, opts.options].join(' '), 'update-' + name);
+        }
       },
 
       // Auto packages
