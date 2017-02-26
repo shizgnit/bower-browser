@@ -26,7 +26,7 @@
           <tr ng-repeat="(name, version) in bower.json.dependencies">
             <th>{{name}}</th>
             <td>{{bower.getVersion(name,'installed')}}</td>
-            <td><input type="checkbox" ng-checked="bower.isAuto(name)"/></td>
+            <td><input type="checkbox" disabled="disabled" ng-checked="bower.isAuto(name)"/></td>
             <td class="text-right"><button type="button" class="btn btn-default btn-xs" style="background-color: #B5EAB7;" ng-if="bower.isInstalled(name) && bower.hasUpdate(name)" ng-click="bower.install(name, {options: '--save'})" ng-disabled="process.isInQueue('install-' + name)">Update to {{bower.getVersion(name,'available')}}</button></td>
             <td class="text-right"><button type="button" class="btn btn-default btn-xs" ng-if="bower.isInstalled(name)" ng-click="bower.uninstall(name, {options: '--save'})" ng-disabled="process.isInQueue('uninstall-' + name)">Uninstall</button></td>
           </tr>
