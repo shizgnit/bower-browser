@@ -57,6 +57,11 @@ module.exports = [
         ProcessService.execute('bower update', 'update');
       },
 
+      // Auto packages
+      auto: function (name, value) {
+        ProcessService.execute(['dir', name, value].join(' '), 'auto');
+      },
+      
       // Check installation
       isInstalled: function (name) {
         if (_.has(this.json.dependencies, name)) {
@@ -72,8 +77,22 @@ module.exports = [
       getVersion: function (name, field) {
         field = field || 'dependencies';
         return this.json[field][name];
-      }
+      },
+      
+      hasUpdate: function (name) {
+        if (this.getVersion(name, 'installed') != this.getVersion(name, 'available')) {
+          return true;
+        }
+        return false;
+      },
 
+      isAuto: function (name) {
+        if (this.json['auto'][name] == 'true') {
+          return true;
+        }
+        return false;
+      }
+      
     };
 
     // Receive WebSocket

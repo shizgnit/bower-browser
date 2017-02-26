@@ -41,7 +41,7 @@ gulp.task('clean', function (callback) {
   del(paths.dest, callback);
 });
 
-gulp.task('lint', function () {
+ gulp.task('lint', function () {
   return pipe(
     gulp.src(paths.scripts),
     $.jscs(),
@@ -175,7 +175,8 @@ gulp.task('serve', ['clean'], function (callback) {
 gulp.task('build', ['scripts', 'styles', 'fonts', 'html', 'extras']);
 
 gulp.task('test', ['clean'], function (callback) {
-  runSequence('lint', 'build', 'mocha', callback);
+//  runSequence('lint', 'build', 'mocha', callback);
+  runSequence('build', callback);
 });
 
 gulp.task('default', ['test']);
