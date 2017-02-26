@@ -4,7 +4,7 @@
   <hr>
   <div ng-if="bower.loaded && !bower.error">
     <div ng-if="bower.json.installed">
-      <h2>installed</h2>
+      <h2>Installed Packages</h2>
       <table class="table table-hover">
         <colgroup>
           <col style="width: 20%;">
@@ -23,18 +23,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="(name, version) in bower.json.installed">
+          <tr ng-repeat="(name, version) in bower.json.dependencies">
             <th>{{name}}</th>
-            <td>{{version}}</td>
+            <td>{{bower.getVersion(name,'installed')}}</td>
             <td><input type="checkbox" ng-checked="bower.isAuto(name)"/></td>
-            <td class="text-right"><button type="button" class="btn btn-default btn-xs" style="background-color: #4CAF50;" ng-if="bower.hasUpdate(name)" ng-click="bower.install(name, {options: '--save'})" ng-disabled="process.isInQueue('install-' + name)">Update to {{bower.getVersion(name,'available')}}</button></td>
-            <td class="text-right"><button type="button" class="btn btn-default btn-xs" ng-click="bower.uninstall(name, {options: '--save'})" ng-disabled="process.isInQueue('uninstall-' + name)">Uninstall</button></td>
+            <td class="text-right"><button type="button" class="btn btn-default btn-xs" style="background-color: #B5EAB7;" ng-if="bower.isInstalled(name) && bower.hasUpdate(name)" ng-click="bower.install(name, {options: '--save'})" ng-disabled="process.isInQueue('install-' + name)">Update to {{bower.getVersion(name,'available')}}</button></td>
+            <td class="text-right"><button type="button" class="btn btn-default btn-xs" ng-if="bower.isInstalled(name)" ng-click="bower.uninstall(name, {options: '--save'})" ng-disabled="process.isInQueue('uninstall-' + name)">Uninstall</button></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div ng-if="bower.json.devDependencies">
-      <h2>devDependencies</h2>
+      <h2>Developer Dependencies</h2>
       <table class="table table-hover">
         <colgroup>
           <col style="width: 40%;">

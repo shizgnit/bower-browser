@@ -64,12 +64,17 @@ module.exports = [
       
       // Check installation
       isInstalled: function (name) {
-        if (_.has(this.json.dependencies, name)) {
+        if (_.has(this.json.installed, name)) {
           return 'dependencies';
         }
-        if (_.has(this.json.devDependencies, name)) {
-          return 'devDependencies';
-        }
+        // For now... we don't care where else it is listed.
+        //if (_.has(this.json.dependencies, name)) {
+        //  return 'dependencies';
+        //}
+        //if (_.has(this.json.devDependencies, name)) {
+        //  return 'devDependencies';
+        //}
+        
         return false;
       },
 
