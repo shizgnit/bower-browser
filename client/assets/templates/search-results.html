@@ -49,6 +49,7 @@
               <li><a href ng-click="bower.install(component.name, {version: component.version, options: '--save'})">Install as dependency</a></li>
               <li><a href ng-click="bower.install(component.name, {version: component.version, options: '--save-dev'})">Install as devDependency</a></li>
               <li><a href ng-click="bower.install(component.name, {version: component.version})">Install without save</a></li>
+              <li><a href ng-click="bower.install(component.name, {version: component.version, options: '--save --force'})">Install with force</a></li>
               <li class="divider"></li>
               <li><a href ng-click="bower.uninstall(component.name)">Uninstall without save</a></li>
             </ul>
