@@ -89,7 +89,7 @@ module.exports = [
         field = field || 'dependencies';
         return this.json[field][name];
       },
-      
+            
       hasUpdate: function (name) {
         if (this.getVersion(name, 'installed') != this.getVersion(name, 'available')) {
           return true;
